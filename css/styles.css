@@ -67,7 +67,7 @@ p {
 .mock-preview {
   border-radius: 24px;
   background: linear-gradient(180deg, #ffffff, #eef8ff);
-  border: 2px dashed rgba(23, 50, 74, 0.2);
+  border: 2px dashed #00A19D;
   min-height: 360px;
   position: relative;
   overflow: hidden;
@@ -85,7 +85,7 @@ p {
   font-weight: bold;
 }
 .pill {
-  background: rgba(255, 255, 255, 0.92);
+  background: #00A19D;
   padding: 8px 12px;
   border-radius: 999px;
   border: 1px solid rgba(23, 50, 74, 0.15);
@@ -153,12 +153,7 @@ button.secondary {
   height: 100vh;
   position: relative;
   overflow: hidden;
-  background: radial-gradient(
-    circle at top,
-    #ffffff 0%,
-    #eef8ff 42%,
-    #ddecfb 100%
-  );
+  background: #FFF7E1;
 }
 #hud {
   position: absolute;
