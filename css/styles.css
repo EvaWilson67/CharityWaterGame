@@ -367,6 +367,53 @@ button.secondary {
   padding-left:10px;
 }
 
+#playerMessage {
+  position: absolute;
+  width: 140px;
+  text-align: center;
+  font-weight: 800;
+  color: var(--good);
+  background: rgba(255,255,255,0.95);
+  border-radius: 12px;
+  padding: 6px 10px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+
+  opacity: 0;
+  transition: opacity 0.2s ease;
+
+  pointer-events: none;
+}
+
+#playerMessage.show {
+  opacity: 1;
+}
+
+#playerKeyMessage {
+  position: absolute;
+  left: 0;
+  bottom: 6px;
+  transform: translateX(-50%);
+  z-index: 11;
+  max-width: 280px;
+  padding: 10px 14px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.95);
+  border: 2px solid rgba(23, 50, 74, 0.12);
+  color: var(--ink);
+  font-weight: 800;
+  text-align: center;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+  opacity: 0;
+  transform-origin: center;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  pointer-events: none;
+}
+
+#playerKeyMessage.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
 * {
   box-sizing: border-box;
   font-family: "Proxima Nova", Arial, Helvetica, sans-serif;

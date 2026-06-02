@@ -23,6 +23,7 @@ let keys = { left: false, right: false };
 let droplets = [];
 let lastTime = 0;
 let feedbackHideTimer = null;
+let playerMessageHideTimer = null;
 let noticeHideTimer = null;
 
 const player = document.createElement("img");
@@ -31,11 +32,31 @@ player.id = "player";
 player.alt = "Player";
 gameArea.appendChild(player);
 
+const playerKeyMessage = document.createElement("div");
+playerKeyMessage.id = "playerKeyMessage";
+gameArea.appendChild(playerKeyMessage);
+
 player.style.width = PLAYER_WIDTH + "px";
 player.style.height = PLAYER_HEIGHT + "px";
 player.style.left = playerX + "px";
 player.style.bottom = "28px";
 
+function updatePlayerKeyMessagePosition() {
+  // playerKeyMessage.style.left = playerX + PLAYER_WIDTH / 2 + "px";
+  playerKeyMessage.style.bottom = 10;
+  playerKeyMessage.style.left = playerX;
+}
+
+function showPlayerKeyMessage(text) {
+  clearTimeout(playerMessageHideTimer);
+  playerKeyMessage.textContent = text;
+  playerKeyMessage.classList.add("show");
+  updatePlayerKeyMessagePosition();
+
+  playerMessageHideTimer = setTimeout(() => {
+    playerKeyMessage.classList.remove("show");
+  }, 1800);
+}
 
 function initGame() {
   score = 0;
@@ -50,7 +71,9 @@ function initGame() {
   overlay.classList.add("hidden");
   messageEl.classList.remove("show");
   centerNotice.classList.remove("show");
+  playerKeyMessage.classList.remove("show");
   player.style.left = playerX + "px";
+  updatePlayerKeyMessagePosition();
 
   running = true;
   lastTime = performance.now();
@@ -77,7 +100,7 @@ function spawnDroplet() {
   el.style.left = x + "px";
   el.style.top = "-60px";
   el.style.width = size + "px";
-  el.style.height = (size * 1.9) + "px";
+  el.style.height = size * 1.9 + "px";
 
   gameArea.appendChild(el);
 
@@ -92,7 +115,6 @@ function spawnDroplet() {
   });
 }
 
-
 function movePlayer(dt) {
   const speed = 0.45 * dt;
 
@@ -101,6 +123,7 @@ function movePlayer(dt) {
 
   playerX = Math.max(0, Math.min(gameWidth - PLAYER_WIDTH, playerX));
   player.style.left = playerX + "px";
+  // updatePlayerKeyMessagePosition();
 }
 
 function updateDroplets(dt) {
@@ -127,6 +150,7 @@ function updateDroplets(dt) {
 
         if (score % 5 === 0) {
           showFeedback("Great job!");
+          showPlayerKeyMessage("100% of public donations go directly to water projects");
         }
       } else {
         lives -= 1;
@@ -204,6 +228,7 @@ function resize() {
   else playerX = Math.max(0, Math.min(gameWidth - PLAYER_WIDTH, playerX));
 
   player.style.left = playerX + "px";
+  updatePlayerKeyMessagePosition();
 }
 
 window.addEventListener("resize", resize);
@@ -220,7 +245,9 @@ window.addEventListener("keyup", (e) => {
 
 window.addEventListener("mousemove", (e) => {
   if (!running) return;
-playerX = Math.max(0, Math.min(gameWidth - PLAYER_WIDTH, e.clientX - PLAYER_WIDTH / 2));  player.style.left = playerX + "px";
+  playerX = Math.max(0, Math.min(gameWidth - PLAYER_WIDTH, e.clientX - PLAYER_WIDTH / 2));
+  player.style.left = playerX + "px";
+  // updatePlayerKeyMessagePosition();
 });
 
 restartBtn.addEventListener("click", () => {
@@ -228,5 +255,6 @@ restartBtn.addEventListener("click", () => {
 });
 
 player.style.left = playerX + "px";
+updatePlayerKeyMessagePosition();
 resize();
 initGame();
