@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/styles.css">
+  <title>Charity Water Catcher Prototype</title>
+
+</head>
+
+<body>
+  <section id="landingScreen" class="screen active">
+    <div class="card">
+      <div class="hero">
+        <div>
+          <h1>Charity Water Catcher</h1>
+          <p>Catch clean water droplets, avoid dirty ones, and keep going until you run out of lives. This prototype
+            matches your mockup and is ready to customize for your charity app.</p>
+          <h3>How to play</h3>
+          <p>Move the canister left and right with the arrow keys or by moving your mouse. </p>
+          <p>Blue droplets increase your score. </p>
+          <p>Black droplets remove a life.</p>
+          <div>
+            <span class="tip">3 lives to start</span>
+            <span class="tip">Blue = good</span>
+            <span class="tip">Black = bad</span>
+          </div>
+          <div class="btn-row">
+            <button id="startBtn" class="primary" onclick="window.location.href='gamescreen.html';">Start Game</button>
+          </div>
+          <a class="footer-note" href="https://www.charitywater.org/">charitywater.org</a>
+        </div>
+        <div class="mock-preview" aria-hidden="true">
+          <div class="mini-ui">
+            <div class="hud-item">
+              <span><span class="icon-drop blue"></span> Score</span>
+              <span id="scoreValue">0</span>
+            </div>
+            <div class="hud-item">
+              <span>
+                <span class="image">
+                  <img src="png/jerry_can_yellow.png" alt="Jerry Can">
+                </span>Lives </span>
+              <span id="livesValue">3</span>
+            </div>
+          </div>
+          <div class="sample-drop blue" style="left:14%; top:18%;"></div>
+          <div class="sample-drop blue" style="left:74%; top:44%;"></div>
+          <div class="sample-drop black" style="left:23%; top:56%; height:40px;"></div>
+          <img src="png/jerry_can_yellow.png" alt="Jerry Can"
+            style="width:86px; height:112px; position: absolute; bottom: 20px; left: 50%;">
+        </div>
+      </div>
+    </div>
+  </section>
+
+</body>
+
+<footer>
+  <script src="js\game.js"></script>
+</footer>
+
+</html>

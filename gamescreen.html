@@ -1,0 +1,55 @@
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/styles.css">
+    <title>Charity Water Catcher Prototype</title>
+
+</head>
+
+<body>
+    <div id="gameWrap">
+        <div id="hud">
+            <div class="hud-item">
+                <span><span class="icon-drop blue"></span> Score</span>
+                <span id="scoreValue">0</span>
+            </div>
+            <div class="hud-item">
+                <span>
+                    <span class="image">
+                        <img src="png/jerry_can_yellow.png" alt="Jerry Can">
+                    </span>Lives </span>
+                <span id="livesValue">3</span>
+            </div>
+        </div>
+
+        <div id="gameArea"></div>
+        <div id="message"></div>
+        <div id="centerNotice">
+            <div class="noticeBox" id="centerNoticeText"></div>
+        </div>
+
+        <div id="Key Message"></div>
+
+        <div id="gameOverOverlay" class="overlay hidden">
+            <div class="card">
+                <h2 class="title">Game Over</h2>
+                <div class="big-score" id="finalScore">0</div>
+                <p>You ran out of lives.</p>
+                <p><span id="charityUrl" className="footer-note"><a href="https://www.charitywater.org/">charitywater.org</a></span></p>
+                <div class="btn-row">
+                    <button id="restartBtn" class="primary">Restart</button>
+                    <button class="button secondary" onclick="window.location.href='index.html';">Back to Start</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+<footer>
+    <script src="js\game.js"></script>
+</footer>
+
+</html>
