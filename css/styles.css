@@ -4,7 +4,7 @@
   --ink: #17324a;
   --blue: #2c8dff;
   --black: #1f1f1f;
-  --gold: #ffcc4d;
+  --yellow: #FFC700;
   --good: #2e9b57;
   --bad: #d94b4b;
 }
@@ -49,6 +49,7 @@ body {
 h1,
 h2,
 h3 {
+  color:#FFC700;
   margin: 0 0 12px;
 }
 p {
