@@ -153,7 +153,12 @@ button.secondary {
   height: 100vh;
   position: relative;
   overflow: hidden;
-  background: #FFF7E1;
+  background: radial-gradient(
+    circle at top,
+    #ffffff 0%,
+    #eef8ff 42%,
+    #ddecfb 100%
+  );
 }
 #hud {
   position: absolute;
