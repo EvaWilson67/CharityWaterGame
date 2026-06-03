@@ -460,6 +460,12 @@ button.secondary:hover {
   font-weight: 700;
 }
 
+a, 
+a:visited, 
+a:active {
+  color: inherit;
+}
+
 .footer-note {
   margin-top: 10px;
   font-size: 14px;
