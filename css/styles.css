@@ -26,7 +26,7 @@ body {
   margin: 0;
   height: 100%;
   color: var(--ink);
-  background: #00A19D;
+  background: #00a19d;
 }
 
 body {
@@ -465,6 +465,7 @@ button.secondary:hover {
   font-size: 14px;
   opacity: 0.82;
   padding-left: 10px;
+  color: var(--ink);
 }
 
 #playerMessage {
