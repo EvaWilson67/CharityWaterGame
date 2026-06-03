@@ -34,7 +34,7 @@ gameArea.appendChild(player);
 
 const playerKeyMessage = document.createElement("div");
 playerKeyMessage.id = "playerKeyMessage";
-gameArea.appendChild(playerKeyMessage);
+document.getElementById("gameWrap").appendChild(playerKeyMessage);
 
 player.style.width = PLAYER_WIDTH + "px";
 player.style.height = PLAYER_HEIGHT + "px";
@@ -42,9 +42,11 @@ player.style.left = playerX + "px";
 player.style.bottom = "28px";
 
 function updatePlayerKeyMessagePosition() {
-  // playerKeyMessage.style.left = playerX + PLAYER_WIDTH / 2 + "px";
-  playerKeyMessage.style.bottom = 10;
-  playerKeyMessage.style.left = playerX;
+  playerKeyMessage.style.position = "absolute";
+  playerKeyMessage.style.top = "90px"; // underneath logo
+  playerKeyMessage.style.left = "50%";
+  playerKeyMessage.style.transform = "translateX(-50%)";
+  playerKeyMessage.style.bottom = "auto";
 }
 
 function showPlayerKeyMessage(text) {
@@ -55,7 +57,7 @@ function showPlayerKeyMessage(text) {
 
   playerMessageHideTimer = setTimeout(() => {
     playerKeyMessage.classList.remove("show");
-  }, 1800);
+  }, 3500);
 }
 
 function initGame() {
@@ -63,7 +65,7 @@ function initGame() {
   lives = 3;
   playerX = Math.max(0, gameWidth / 2 - PLAYER_WIDTH / 2);
 
-  droplets.forEach(d => d.el.remove());
+  droplets.forEach((d) => d.el.remove());
   droplets = [];
 
   scoreValue.textContent = score;
@@ -94,7 +96,7 @@ function spawnDroplet() {
   el.className = "droplet " + (isGood ? "blue" : "black");
 
   const x = Math.random() * (gameWidth - 40);
-  const speed = isGood ? (0.9 + Math.random() * 0.8) : (1.0 + Math.random() * 0.9);
+  const speed = isGood ? 0.9 + Math.random() * 0.8 : 1.0 + Math.random() * 0.9;
   const size = isGood ? 34 : 30;
 
   el.style.left = x + "px";
@@ -111,7 +113,7 @@ function spawnDroplet() {
     speed,
     isGood,
     width: size,
-    height: size * 1.9
+    height: size * 1.9,
   });
 }
 
@@ -123,7 +125,6 @@ function movePlayer(dt) {
 
   playerX = Math.max(0, Math.min(gameWidth - PLAYER_WIDTH, playerX));
   player.style.left = playerX + "px";
-  // updatePlayerKeyMessagePosition();
 }
 
 function updateDroplets(dt) {
@@ -131,7 +132,7 @@ function updateDroplets(dt) {
     x: playerX,
     y: gameHeight - 28 - PLAYER_HEIGHT,
     w: PLAYER_WIDTH,
-    h: PLAYER_HEIGHT
+    h: PLAYER_HEIGHT,
   };
 
   const toRemove = [];
@@ -150,7 +151,16 @@ function updateDroplets(dt) {
 
         if (score % 5 === 0) {
           showFeedback("Great job!");
-          showPlayerKeyMessage("100% of public donations go directly to water projects");
+          const facts = [
+            "100% of public donations go directly to water projects",
+            "703 million people still lack access to clean water",
+            "Clean water improves health, education, and income",
+            "Every completed project is tracked and reported",
+            "charity: water has funded 170,000+ water projects",
+            "Women and girls often spend hours collecting water daily",
+          ];
+
+          showPlayerKeyMessage(facts[Math.floor(Math.random() * facts.length)]);
         }
       } else {
         lives -= 1;
@@ -168,7 +178,7 @@ function updateDroplets(dt) {
 
   [...new Set(toRemove)]
     .sort((a, b) => b - a)
-    .forEach(i => {
+    .forEach((i) => {
       droplets[i]?.el.remove();
       droplets.splice(i, 1);
     });
@@ -191,14 +201,20 @@ function showFeedback(text) {
   clearTimeout(feedbackHideTimer);
   messageEl.textContent = text;
   messageEl.classList.add("show");
-  feedbackHideTimer = setTimeout(() => messageEl.classList.remove("show"), 1400);
+  feedbackHideTimer = setTimeout(
+    () => messageEl.classList.remove("show"),
+    1400,
+  );
 }
 
 function showCenterNotice(text) {
   clearTimeout(noticeHideTimer);
   centerNoticeText.textContent = text;
   centerNotice.classList.add("show");
-  noticeHideTimer = setTimeout(() => centerNotice.classList.remove("show"), 1000);
+  noticeHideTimer = setTimeout(
+    () => centerNotice.classList.remove("show"),
+    1000,
+  );
 }
 
 function gameOver() {
@@ -245,9 +261,11 @@ window.addEventListener("keyup", (e) => {
 
 window.addEventListener("mousemove", (e) => {
   if (!running) return;
-  playerX = Math.max(0, Math.min(gameWidth - PLAYER_WIDTH, e.clientX - PLAYER_WIDTH / 2));
+  playerX = Math.max(
+    0,
+    Math.min(gameWidth - PLAYER_WIDTH, e.clientX - PLAYER_WIDTH / 2),
+  );
   player.style.left = playerX + "px";
-  // updatePlayerKeyMessagePosition();
 });
 
 restartBtn.addEventListener("click", () => {
